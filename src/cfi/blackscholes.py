@@ -28,33 +28,34 @@ class BlackScholes:
         self.S = np.asarray(S)
         self.K = np.asarray(K)
         self.T = np.asarray(T)
-        self.r = np.asarray(r)
         self.sigma = np.asarray(sigma)
+        self.r = np.asarray(r)
+        self.q = np.asarray(q)
 
         # Check if all non-scalar inputs have the same dimensions
-        shapes = [x.shape for x in [self.S, self.K, self.T, self.r, self.sigma] if x.ndim > 0]
+        shapes = [x.shape for x in [self.S, self.K, self.T, self.sigma, self.r, self.q] if x.ndim > 0]
         if len(set(shapes)) > 1:
             raise ValueError("All non-scalar inputs must have the same dimensions.")
 
-        self.d1, self.d2 = self.calculate_d1_d2()
-
-    def calculate_d1_d2(self):
-        """
-        Calculates the d1 and d2 values used in the Black-Scholes formula.
-
-        Returns:
-        The d1 and d2 values.
-        """
-        d1 = (np.log(self.S / self.K) + (self.r + 0.5 * self.sigma ** 2) * self.T) / (self.sigma * np.sqrt(self.T))
-        d2 = d1 - self.sigma * np.sqrt(self.T)
-        return d1, d2
-
+    @property
+    def d1(self):
+        """ Calculates d1 values in  Black-Scholes formula """
+        return (np.log(self.S / self.K) + (self.r - self.q + 0.5 * self.sigma ** 2) * self.T) / (self.sigma * np.sqrt(self.T))
+        
+    @property
+    def d2(self):
+        """ Calculates d2 value in Black-Scholes formula """
+        return self.d1 - self.sigma * np.sqrt(self.T)
+    
     def call_price(self):
         """
         Calculates the price of a European call option using the Black-Scholes formula.
-
-        Returns:
-        The price of the European call option.
         """
-        call_price = self.S * norm.cdf(self.d1) - self.K * np.exp(-self.r * self.T) * norm.cdf(self.d2)
-        return call_price
+        return self.S * np.exp(-self.q * self.T) * norm.cdf(self.d1) - self.K * np.exp(-self.r * self.T) * norm.cdf(self.d2)
+    
+    def put_price(self):
+        """
+        Calculates the price of a European put option using the Black-Scholes formula.
+        """
+        return self.K * np.exp(-self.r * self.T) * norm.cdf(-self.d2) - self.S * np.exp(-self.q * self.T) * norm.cdf(-self.d1)
+        

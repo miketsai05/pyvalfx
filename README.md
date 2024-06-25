@@ -5,12 +5,13 @@ pyvalfx provides an implementation of commonly applied methodologies used in fai
 ## Implemented Methodologies
 
 
-### Complex Financial Instruments
+### Complex Financial Instruments (CFI)
 * Black-Scholes model
 * Monte Carlo simulation
 * Correlated Monte Carlo simulation
 * Binomial lattice model
 * Tsiveriotis-Fernandes Convertible Bond model
+* Black-Derman-Toy lattice model 
 
 ### Discount for Lack of Marketability (DLOM)
 * Chaffe European Put
