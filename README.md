@@ -10,6 +10,7 @@ pyvalfx provides an implementation of commonly applied methodologies used in fai
 * Monte Carlo simulation
 * Correlated Monte Carlo simulation
 * Binomial lattice model
+* Tsiveriotis-Fernandes Convertible Bond model
 
 ### Discount for Lack of Marketability (DLOM)
 * Chaffe European Put
