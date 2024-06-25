@@ -3,6 +3,7 @@ Module for Black Scholes formula
 """
 
 import numpy as np
+
 from scipy.stats import norm
 
 class BlackScholes:
