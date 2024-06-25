@@ -20,7 +20,7 @@ def yearfrac(start_date: pd.Timestamp, end_date: pd.Timestamp, basis=0):
     2: Actual/360
     3: Actual/365
     4: European 30/360
-    5: Actual/365.25
+    5: Actual/365.25 (not an actual option in Excel formula but commonly used)
     """
 
     # Ensure start date before end date
