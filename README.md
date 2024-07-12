@@ -9,7 +9,7 @@ pyvalfx provides an implementation of commonly applied methodologies used in fai
 * Black-Scholes model
 * Monte Carlo simulation
 * Correlated Monte Carlo simulation
-* Binomial lattice model
+* Cox-Ross-Rubinstein Binomial lattice model
 * Tsiveriotis-Fernandes Convertible Bond model
 * Black-Derman-Toy lattice model 
 

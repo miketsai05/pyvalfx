@@ -62,4 +62,3 @@ class MonteCarlo:
             factor = np.multiply(np.sqrt(self.dt), dw)
 
             return np.multiply(self.S, np.exp(np.cumsum(drift + factor, axis=1)))
-
