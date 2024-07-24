@@ -21,7 +21,7 @@ class BlackScholes:
         """
 
         if any(x <= 0 for x in [T, sigma, r]):
-            raise ValueError("Expected inputs T, sigma, rfr to be greater than 0.")
+            raise ValueError("Expected inputs T, sigma, rfr to be greater than 0")
         if any(x < 0 for x in [S, K]):
             raise ValueError("Expected inputs S, K to be greater than or equal to 0")
 

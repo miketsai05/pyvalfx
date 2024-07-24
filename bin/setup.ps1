@@ -74,18 +74,12 @@ function DisableWindowsAppExecutionAliases {
   Write-Normal "Done!`n"
 }
 
-Write-Green "Running the setup script for the teamshares-finance repo`n`n"
+Write-Green "Running the setup script for repo`n`n"
 
 Write-Header "Checking for prerequisites"
-Test-Prerequisite pyenv "https://github.com/pyenv-win/pyenv-win"
-Test-Prerequisite nvm "https://github.com/coreybutler/nvm-windows"
-Test-Prerequisite doppler "https://docs.doppler.com/docs/install-cli"
-Test-Prerequisite docker-compose "https://docs.docker.com/desktop/install/windows-install/"
-Test-Prerequisite heroku "https://devcenter.heroku.com/articles/heroku-cli"
-Write-Normal "`n"
 
-Write-Header "Ensure a git remote exists for Heroku"
-heroku git:remote -a teamshares-finance
+Test-Prerequisite nvm "https://github.com/coreybutler/nvm-windows"
+Write-Normal "`n"
 
 Write-Header "Configuring environments"
 Write-Bold " ${EMOJI_PUZZLE_PIECE}  Configuring nodejs environment...`n`n"
@@ -93,25 +87,14 @@ nvm install (Get-ToolVersion "nodejs")
 nvm use (Get-ToolVersion "nodejs")
 Start-Sleep -seconds 1
 nvm on
-Write-Bold "`n ${EMOJI_PUZZLE_PIECE}  Configuring python environment...`n`n"
-pyenv update
-pyenv install (Get-ToolVersion "python")
-pyenv local (Get-ToolVersion "python")
-DisableWindowsAppExecutionAliases
-Write-Normal "`n"
 
 Write-Header "Installing python dev dependencies"
 python -m pip install --upgrade pip
 python -m pip install -r requirements-dev.txt
-pyenv rehash
 Write-Normal "`n"
 
 Write-Header "Setting up pre-commit hooks"
 pre-commit install
-Write-Normal "`n"
-
-Write-Header "Setting up default doppler project/environment"
-doppler setup -p finance -c dev
 Write-Normal "`n"
 
 Write-Header "Setting up yarn shortcuts"
@@ -121,11 +104,6 @@ Write-Bold " ${EMOJI_YARN}  Updating npm...`n"
 npm install -g npm@latest
 Write-Bold "`n ${EMOJI_YARN}  Installing yarn...`n"
 npm install -g yarn
-Write-Normal "`n"
-
-Write-Header "Linking .gitconfig"
-git config --local include.path "../.gitconfig"
-Write-Normal ".gitconfig path added to local config file"
 Write-Normal "`n"
 
 Write-Green "`n ${EMOJI_SNAKE}  Good to go!`n`n"
