@@ -3,8 +3,8 @@ Module for Black Scholes formula
 """
 
 import numpy as np
-
 from scipy.stats import norm
+
 
 class BlackScholes:
     def __init__(self, S, K, T, sigma, r, q=0):
@@ -39,23 +39,28 @@ class BlackScholes:
 
     @property
     def d1(self):
-        """ Calculates d1 values in  Black-Scholes formula """
-        return (np.log(self.S / self.K) + (self.r - self.q + 0.5 * self.sigma ** 2) * self.T) / (self.sigma * np.sqrt(self.T))
-        
+        """Calculates d1 values in  Black-Scholes formula"""
+        return (np.log(self.S / self.K) + (self.r - self.q + 0.5 * self.sigma**2) * self.T) / (
+            self.sigma * np.sqrt(self.T)
+        )
+
     @property
     def d2(self):
-        """ Calculates d2 value in Black-Scholes formula """
+        """Calculates d2 value in Black-Scholes formula"""
         return self.d1 - self.sigma * np.sqrt(self.T)
-    
+
     def call_price(self):
         """
         Calculates the price of a European call option using the Black-Scholes formula.
         """
-        return self.S * np.exp(-self.q * self.T) * norm.cdf(self.d1) - self.K * np.exp(-self.r * self.T) * norm.cdf(self.d2)
-    
+        return self.S * np.exp(-self.q * self.T) * norm.cdf(self.d1) - self.K * np.exp(-self.r * self.T) * norm.cdf(
+            self.d2
+        )
+
     def put_price(self):
         """
         Calculates the price of a European put option using the Black-Scholes formula.
         """
-        return self.K * np.exp(-self.r * self.T) * norm.cdf(-self.d2) - self.S * np.exp(-self.q * self.T) * norm.cdf(-self.d1)
-        
+        return self.K * np.exp(-self.r * self.T) * norm.cdf(-self.d2) - self.S * np.exp(-self.q * self.T) * norm.cdf(
+            -self.d1
+        )

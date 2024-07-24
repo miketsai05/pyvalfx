@@ -3,11 +3,8 @@ Module for performing date and present value related calculations for valuation
 models
 """
 
-from datetime import datetime
-from typing import List, Optional, Tuple
-
-import numpy as np
 import pandas as pd
+
 
 def yearfrac(start_date: pd.Timestamp, end_date: pd.Timestamp, basis=0):
     """Calculates time between two dates.
@@ -32,12 +29,7 @@ def yearfrac(start_date: pd.Timestamp, end_date: pd.Timestamp, basis=0):
     if basis == 0:  # US (NASD) 30/360
         start_day = start_date.day
         end_day = end_date.day
-        if (
-            start_date.month == 2
-            and start_date.is_month_end
-            and end_date.month == 2
-            and end_date.is_month_end
-        ):
+        if start_date.month == 2 and start_date.is_month_end and end_date.month == 2 and end_date.is_month_end:
             end_day = 30
         if start_date.month == 2 and start_date.is_month_end:
             start_day = 30
@@ -46,18 +38,14 @@ def yearfrac(start_date: pd.Timestamp, end_date: pd.Timestamp, basis=0):
         if start_day == 31:
             start_day = 30
         numerator = (
-            360 * (end_date.year - start_date.year)
-            + 30 * (end_date.month - start_date.month)
-            + (end_day - start_day)
+            360 * (end_date.year - start_date.year) + 30 * (end_date.month - start_date.month) + (end_day - start_day)
         )
 
     elif basis == 4:  # EURO 30/360
         start_day = 30 if start_date.day == 31 else start_date.day
         end_day = 30 if end_date.day == 31 else end_date.day
         numerator = (
-            360 * (end_date.year - start_date.year)
-            + 30 * (end_date.month - start_date.month)
-            + (end_day - start_day)
+            360 * (end_date.year - start_date.year) + 30 * (end_date.month - start_date.month) + (end_day - start_day)
         )
 
     else:  # Actual

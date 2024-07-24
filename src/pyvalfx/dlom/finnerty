@@ -11,11 +11,11 @@ class dlom_finnerty:
         self.T = T
         self.sigma = sigma
         self.q = q
-    
+
     @property
     def s2_t(self):
         return self.sigma**2 * self.T
-    
+
     @property
     def v_root_t(self):
         return np.sqrt(
@@ -38,6 +38,6 @@ class dlom_finnerty:
             "s2_t": self.s2_t,
             "v_root_t": self.v_root_t
         }
-    
+
     citation = "Finnerty, J.D. (1996). '"'An Average-Strike Put Option Model of the Marketability Discount'"' The"\
                " Journal of Derivatives Summer 2012, Vol 19, No. 4 pg 53-69."

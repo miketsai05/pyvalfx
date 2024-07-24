@@ -11,7 +11,7 @@ pyvalfx provides an implementation of commonly applied methodologies used in fai
 * Correlated Monte Carlo simulation
 * Cox-Ross-Rubinstein Binomial lattice model
 * Tsiveriotis-Fernandes Convertible Bond model
-* Black-Derman-Toy lattice model 
+* Black-Derman-Toy lattice model
 
 ### Discount for Lack of Marketability (DLOM)
 * Chaffe European Put
@@ -19,5 +19,5 @@ pyvalfx provides an implementation of commonly applied methodologies used in fai
 * Finnerty Asian Put
 * Ghaidarov Asian Put
 
-### Utility 
+### Utility
 * yearfrac (replicates Excel function)
