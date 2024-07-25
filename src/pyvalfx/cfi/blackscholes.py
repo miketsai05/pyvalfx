@@ -1,30 +1,27 @@
-"""
-Module for Black Scholes formula
-"""
-
 import numpy as np
 from scipy.stats import norm
 
 
 class BlackScholes:
+    """
+    Black-Scholes model for option pricing with the given parameters.
+
+    Parameters:
+    S: The spot price of the underlying asset
+    K: The strike price
+    T: The time to maturity (in years)
+    sigma: The volatility of the underlying asset
+    r: The risk-free interest rate
+    q: The continuous dividend yield (default is 0)
+    """
+
     def __init__(self, S, K, T, sigma, r, q=0):
-        """
-        Initializes the Black-Scholes class with the given parameters.
-
-        Parameters:
-        S: The spot price of the underlying asset
-        K: The strike price
-        T: The time to maturity (in years)
-        sigma: The volatility of the underlying asset
-        r: The risk-free interest rate
-        q: The continuous dividend yield (default is 0)
-        """
-
         if any(x <= 0 for x in [T, sigma, r]):
             raise ValueError("Expected inputs T, sigma, rfr to be greater than 0")
         if any(x < 0 for x in [S, K]):
             raise ValueError("Expected inputs S, K to be greater than or equal to 0")
 
+        # Convert all inputs to numpy arrays
         self.S = np.asarray(S)
         self.K = np.asarray(K)
         self.T = np.asarray(T)
