@@ -5,7 +5,7 @@ import numpy as np
 
 class Finnerty:
     """
-    Calculates discount for lack of marketability based on Finnerty
+    Calculates discount for lack of marketability based on the Finnerty
     Average-Strike Put Option Model
     """
 

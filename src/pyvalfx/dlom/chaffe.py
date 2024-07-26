@@ -2,6 +2,11 @@ from ..cfi.blackscholes import BlackScholes
 
 
 class Chaffe:
+    """
+    Calculates discount for lack of marketability based on the Chaffe
+    European Put Option Model
+    """
+
     def __init__(self, T, sigma, r, q=0):
         self.T = T
         self.sigma = sigma

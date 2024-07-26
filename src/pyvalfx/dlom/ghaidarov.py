@@ -5,7 +5,7 @@ import numpy as np
 
 class Ghaidarov:
     """
-    Calculates discount for lack of marketability based on Ghaidarov
+    Calculates discount for lack of marketability based on the Ghaidarov
     Average-Strike Put Option Model
     """
 
