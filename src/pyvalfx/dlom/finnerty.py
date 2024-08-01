@@ -35,8 +35,6 @@ class Finnerty:
         return {"s2_t": self.s2_t, "v_root_t": self.v_root_t}
 
     citation = (
-        "Finnerty, J.D. (1996). '"
-        "An Average-Strike Put Option Model of the Marketability Discount"
-        "' The"
-        " Journal of Derivatives Summer 2012, Vol 19, No. 4 pg 53-69"
+        "Finnerty, J.D. (1996) 'An Average-Strike Put Option Model of the Marketability Discount', "
+        "The Journal of Derivatives, Summer 2012, 19(4) pp. 53-69."
     )

@@ -35,7 +35,6 @@ class Ghaidarov:
         return {"s2_t": self.s2_t, "v_root_t": self.v_root_t}
 
     citation = (
-        "Ghaidarov, S. '"
-        "Analysis and Critique of the Average Strike Put Option Marketability Discount Model"
-        "' (2009)"
+        "Ghaidarov, S. (2009) 'Analysis and Critique of the Average Strike Put Option Marketability Discount Model', "
+        "SSRN, Sep 2009."
     )

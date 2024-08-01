@@ -20,8 +20,8 @@ class DifferentialPut:
         return 1 - (1 - dlom_common) / (1 - dlom_preferred)
 
     citation = (
-        "Ghaidarov, S. '"
-        "The Use of Protective Put Options in Quantifying Marketability Discounts Applicable to Common and Preferred"
-        " Interests"
-        "' Business Valuation Review, Vol 28, No. 2, pg. 88-99"
+        "Ghaidarov, S. (2009) "
+        "'The Use of Protective Put Options in Quantifying Marketability Discounts Applicable to Common and Preferred"
+        " Interests', "
+        "Business Valuation Review, 28(2), pp. 88-99."
     )

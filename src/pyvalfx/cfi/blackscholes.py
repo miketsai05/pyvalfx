@@ -61,3 +61,8 @@ class BlackScholes:
         return self.K * np.exp(-self.r * self.T) * norm.cdf(-self.d2) - self.S * np.exp(-self.q * self.T) * norm.cdf(
             -self.d1
         )
+
+    citation = (
+        "Black, F.; Scholes, M. (1973) 'The Pricing of Options and Corporate Liabilities', "
+        "Journal of Political Economy, 81(3), pp. 637–654."
+    )
