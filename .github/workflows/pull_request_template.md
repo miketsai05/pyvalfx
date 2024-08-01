@@ -1,11 +1,14 @@
+**Summary:**
+
+Provide a summary of changes and relevant context or rationale
+
 **Changes:**
 
 - List all changes here
 
-**Rationale & Considerations**
+**Additional Information & Considerations:**
 
-Provide a rationale for the changes. Are there any tradeoffs that were
-considered?
+Any additional information to be aware of or any tradeoffs that were considered?
 
 **Checklist / Reminders**
 
