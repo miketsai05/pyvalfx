@@ -10,6 +10,7 @@ from pyvalfx.cfi.montecarlo import MonteCarlo
 err_msg_S = "Expected input S to be array or scalar"
 err_msg_T = "Expected input T to be array or scalar"
 err_msg_S_T_sigma_r = "Expected inputs S, T, sigma, rfr to be greater than 0"
+err_msg_S_T_dim = "S and T inputs must have the same dimensions"
 n = 1e6
 conf_interval = 0.01
 
@@ -31,6 +32,7 @@ def numerical_call(MC: MonteCarlo, K: float):
         param(10, 10, 5, 0.45, 0.05, 0, None, id="test_normal_1"),
         param(30, 25, 3, 0.20, 0.01, 0, None, id="test_normal_2"),
         param(10, 15, 8, 0.90, 0.03, 0, None, id="test_normal_3"),
+        param(10, 10, 5, 0.45, 0.03, 0.01, None, id="test_normal_4"),
         # Test input 0 volatility
         param(10, 10, 5, 0.00, 0.05, 0, err_msg_S_T_sigma_r, id="test_w_0_sigma"),
         # Test input negative volatility
@@ -61,7 +63,9 @@ def test_montecarlo(S, K, T, sigma, r, q, error_message):
         # Test array T
         param(10, 10, [5, 10], 0.45, 0.05, 0, None, id="test_array_1"),
         # Test array S and T
-        param([10, 12], 10, [5, 10], 0.45, 0.05, 0, None, id="test_array_1"),
+        param([10, 12], 10, [5, 10], 0.45, 0.05, 0, None, id="test_array_2"),
+        # Test array S different dimension than T
+        param([10, 12, 14], 10, [5, 10], 0.45, 0.05, 0, err_msg_S_T_dim, id="test_array_dim"),
     ],
 )
 def test_montecarlo_array(S, K, T, sigma, r, q, error_message):

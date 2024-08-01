@@ -16,6 +16,7 @@ err_msg_array_dim = "All non-scalar inputs must have the same dimensions"
         param(10, 10, 5, 0.45, 0.05, 0, [4.62719983, 2.41520766], None, id="test_normal_1"),
         param(30, 25, 3, 0.20, 0.01, 0, [7.26986603, 1.53100437], None, id="test_normal_2"),
         param(10, 15, 8, 0.90, 0.03, 0, [7.79672799, 9.59614590], None, id="test_normal_3"),
+        param(10, 10, 5, 0.45, 0.03, 0.01, [3.95743983, 3.05222535], None, id="test_normal_4"),
         # Test with stock price at $0
         param(0, 10, 5, 0.45, 0.05, 0, [0, 10 * np.exp(-5 * 0.05)], None, id="test_w_$0_S"),
         # Test with strike price at $0
