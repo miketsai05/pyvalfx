@@ -24,29 +24,28 @@ class MonteCarlo:
 
     def __init__(
         self,
-        S: float,
+        S: np.ndarray | float,
         T: np.ndarray | float,
         sigma: float,
         r: float,
         n: int,
         q: float = 0,
-        seed: int = 2024,
+        seed: int = 6302024,
     ):
-        if isinstance(T, (float, int)):
-            T = np.atleast_2d(T)
-        if not isinstance(T, np.ndarray):
-            raise ValueError("Expected input T to be array or scalar")
-
-        if any(x <= 0 for x in [S, *T, sigma, r]):
+        if any((np.asarray(x) <= 0).any() for x in [S, T, sigma, r]):
             raise ValueError("Expected inputs S, T, sigma, rfr to be greater than 0")
 
-        self.S = S
-        self.T = T
+        self.S = np.atleast_2d(S)
+        self.T = np.atleast_2d(T)
         self.sigma = sigma
         self.r = r
         self.q = q
         self.n = int(n)
         self.seed = seed
+
+        # Check if non-scalar T has at least as many periods as S
+        if self.T.shape < self.S.shape:
+            raise ValueError("S and T inputs must have the same dimensions")
 
     @property
     def M(self):

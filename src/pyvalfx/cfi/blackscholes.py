@@ -16,9 +16,9 @@ class BlackScholes:
     """
 
     def __init__(self, S, K, T, sigma, r, q=0):
-        if any(x <= 0 for x in [T, sigma, r]):
+        if any((np.asarray(x) <= 0).any() for x in [T, sigma, r]):
             raise ValueError("Expected inputs T, sigma, rfr to be greater than 0")
-        if any(x < 0 for x in [S, K]):
+        if any((np.asarray(x) < 0).any() for x in [S, K]):
             raise ValueError("Expected inputs S, K to be greater than or equal to 0")
 
         # Convert all inputs to numpy arrays
@@ -32,7 +32,7 @@ class BlackScholes:
         # Check if all non-scalar inputs have the same dimensions
         shapes = [x.shape for x in [self.S, self.K, self.T, self.sigma, self.r, self.q] if x.ndim > 0]
         if len(set(shapes)) > 1:
-            raise ValueError("All non-scalar inputs must have the same dimensions.")
+            raise ValueError("All non-scalar inputs must have the same dimensions")
 
     @property
     def d1(self):
