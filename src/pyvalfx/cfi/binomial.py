@@ -69,6 +69,7 @@ class BinomialCRR:
         return 1 - self.p_u
 
     def generate_lattice(self):
+        """Generate lattice of underlying stock prices"""
         lattice = np.zeros((self.M + 1, self.M + 1))
         lattice[0, 0] = self.S
 
@@ -78,11 +79,77 @@ class BinomialCRR:
 
         return lattice
 
+    def rollback_lattice(self, payoff_func, rollback_func):
+        """
+        Rollback lattice to calculate option price given the following parameters.
 
-# TEMP TESTING EXAMPLE
-# z = BinomialCRR(10, 5, 0.45, 0.05, round(5/(1/52)))
-# ST = z.generate_lattice()
-# payoff = np.zeros(ST.shape)
-# payoff[:,-1] = np.maximum(ST[:,-1] - 10, 0)
-# for i in reversed(range(1, z.M+1)):
-#     payoff[:i, i-1] = (z.p_u*payoff[:i, i] + z.p_d*payoff[1:i+1, i])*np.exp(-z.r*z.dt)
+        Parameters:
+        payoff_func: The payoff function of the option at maturity
+        rollback_func: The function evaluated at each node to compare early exercise value vs the continuation value
+        """
+        stock_lattice = self.generate_lattice()
+        option_lattice = np.zeros(stock_lattice.shape)
+        option_lattice[:, -1] = payoff_func(stock_lattice[:, -1])
+        for i in reversed(range(1, self.M + 1)):
+            option_lattice[:i, i - 1] = np.maximum(
+                rollback_func(stock_lattice[:i, i - 1]),
+                np.exp(-self.r * self.dt)
+                * (self.p_u * option_lattice[:i, i] + self.p_d * option_lattice[1 : i + 1, i]),
+            )
+        return option_lattice
+
+    # INCUDE OPTIONAL INPUT/METHOD TO ASSOCIATE DATES WITH NODES WITHIN CLASS
+
+
+class BinomialAmerican(BinomialCRR):
+    """
+    Cox-Ross-Rubinstein binomial lattice model for option pricing with the given parameters.
+
+    Parameters:
+    S: The spot price of the underlying asset
+    K: The strike price
+    T: The total time horizon from valuation date
+    sigma: The volatility of the underlying asset
+    r: The risk-free interest rate
+    M: The number of time steps
+    q: The continuous dividend yield (default is 0)
+
+    Underlying asset price assumed to follow a geometric Brownian motion.
+
+    """
+
+    def __init__(
+        self,
+        S: float,
+        K: float,
+        T: float,
+        sigma: float,
+        r: float,
+        M: int,
+        q: float = 0,
+    ):
+        # if any(x <= 0 for x in [S, T, sigma, r]):
+        #     raise ValueError("Expected inputs S, T, sigma, rfr to be greater than 0")
+
+        super().__init__(S, T, sigma, r, M, q)
+        self.K = K
+
+    def call_price(self):
+        """
+        Calculates the price of an American call option using the binomial lattice model.
+        """
+
+        def payoff_func(x):
+            return np.maximum(x - self.K, 0)
+
+        return self.rollback_lattice(payoff_func, payoff_func)[0, 0]
+
+    def put_price(self):
+        """
+        Calculates the price of an American put option using the binomial lattice model.
+        """
+
+        def payoff_func(x):
+            return np.maximum(self.K - x, 0)
+
+        return self.rollback_lattice(payoff_func, payoff_func)[0, 0]
