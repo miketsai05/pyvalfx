@@ -29,19 +29,12 @@ class BinomialCRR:
         M: int,
         q: float = 0,
     ):
-        # if any(x <= 0 for x in [S, T, sigma, r]):
-        #     raise ValueError("Expected inputs S, T, sigma, rfr to be greater than 0")
-
         self.S = S
         self.T = T
         self.sigma = sigma
         self.r = r
         self.q = q
         self.M = int(M)
-
-        # # Check if non-scalar T has at least as many periods as S
-        # if self.T.shape < self.S.shape:
-        #     raise ValueError("S and T inputs must have the same dimensions")
 
     @property
     def dt(self):
@@ -128,9 +121,6 @@ class BinomialAmerican(BinomialCRR):
         M: int,
         q: float = 0,
     ):
-        # if any(x <= 0 for x in [S, T, sigma, r]):
-        #     raise ValueError("Expected inputs S, T, sigma, rfr to be greater than 0")
-
         super().__init__(S, T, sigma, r, M, q)
         self.K = K
 
