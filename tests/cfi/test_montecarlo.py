@@ -13,6 +13,7 @@ err_msg_S_T_sigma_r = "Expected inputs S, T, sigma, rfr to be greater than 0"
 err_msg_S_T_dim = "S and T inputs must have the same dimensions"
 n = 1e6
 conf_interval = 0.01
+zscore = NormalDist().inv_cdf(1 - conf_interval / 2)
 
 
 def numerical_call(MC: MonteCarlo, K: float):
@@ -45,10 +46,12 @@ def numerical_call(MC: MonteCarlo, K: float):
 )
 def test_montecarlo(S, K, T, sigma, r, q, error_message):
     if error_message is None:
-        mc_call = numerical_call(MonteCarlo(S, T, sigma, r, n, q), K)
+        mc_paths = MonteCarlo(S, T, sigma, r, n, q).generate_paths()
+        assert mc_paths.mean() * np.exp(-(r - q) * T) == pytest.approx(S, abs=zscore * mc_paths.std() / np.sqrt(n))
 
+        mc_call = numerical_call(MonteCarlo(S, T, sigma, r, n, q), K)
         assert mc_call["call_price"] == pytest.approx(
-            BlackScholes(S, K, T, sigma, r, q).call_price(), abs=1.96 * mc_call["standard_error"]
+            BlackScholes(S, K, T, sigma, r, q).call_price(), abs=zscore * mc_call["standard_error"]
         )
 
     else:
@@ -72,7 +75,6 @@ def test_montecarlo_array(S, K, T, sigma, r, q, error_message):
     if error_message is None:
         mc_call = numerical_call(MonteCarlo(S, T, sigma, r, n, q), K)
         analytical_call = BlackScholes(S, K, T, sigma, r, q).call_price()
-        zscore = NormalDist().inv_cdf(1 - conf_interval / 2)
         lower_bound = analytical_call - zscore * mc_call["standard_error"]
         upper_bound = analytical_call + zscore * mc_call["standard_error"]
 
