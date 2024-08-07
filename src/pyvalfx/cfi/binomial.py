@@ -93,6 +93,11 @@ class BinomialCRR:
 
     # INCUDE OPTIONAL INPUT/METHOD TO ASSOCIATE DATES WITH NODES WITHIN CLASS
 
+    citation = (
+        "Cox, J.; Ross, S.; Rubinstein, M. (1979) 'Option Pricing: A Simplified Approach', "
+        "Journal of Financial Economics, 7(3), pp. 229-263."
+    )
+
 
 class BinomialAmerican(BinomialCRR):
     """
