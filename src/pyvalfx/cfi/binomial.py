@@ -101,7 +101,7 @@ class BinomialCRR:
 
 class BinomialAmerican(BinomialCRR):
     """
-    Cox-Ross-Rubinstein binomial lattice model for option pricing with the given parameters.
+    Cox-Ross-Rubinstein binomial lattice model for American call/put pricing with the given parameters.
 
     Parameters:
     S: The spot price of the underlying asset
