@@ -9,7 +9,7 @@ from pyvalfx.cfi.montecarlo import MonteCarlo
 
 err_msg_S = "Expected input S to be array or scalar"
 err_msg_T = "Expected input T to be array or scalar"
-err_msg_S_T_sigma_r = "Expected inputs S, T, sigma, rfr to be greater than 0"
+err_msg_S_T_sigma_r = "Expected inputs S, T, sigma, rfr to be greater than or equal to 0"
 err_msg_S_T_dim = "S and T inputs must have the same dimensions"
 n = 1e6
 conf_interval = 0.01
