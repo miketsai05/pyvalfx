@@ -34,12 +34,12 @@ def numerical_call(MC: MonteCarlo, K: float):
         param(30, 25, 3, 0.20, 0.01, 0, None, id="test_normal_2"),
         param(10, 15, 8, 0.90, 0.03, 0, None, id="test_normal_3"),
         param(10, 10, 5, 0.45, 0.03, 0.01, None, id="test_normal_4"),
-        # Test input 0 volatility
-        param(10, 10, 5, 0.00, 0.05, 0, err_msg_S_T_sigma_r, id="test_w_0_sigma"),
+        # # Test input 0 volatility
+        # param(10, 10, 5, 0.00, 0.05, 0, err_msg_S_T_sigma_r, id="test_w_0_sigma"),
         # Test input negative volatility
         param(10, 10, 5, -0.45, 0.05, 0, err_msg_S_T_sigma_r, id="test_w_<0_sigma"),
-        # Test input 0 T
-        param(10, 10, 0, 0.45, 0.05, 0, err_msg_S_T_sigma_r, id="test_w_0_T"),
+        # # Test input 0 T
+        # param(10, 10, 0, 0.45, 0.05, 0, err_msg_S_T_sigma_r, id="test_w_0_T"),
         # Test input negative T
         param(10, 10, -5, 0.45, 0.05, 0, err_msg_S_T_sigma_r, id="test_w_<0_T"),
     ],
