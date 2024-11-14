@@ -2,7 +2,7 @@ import numpy as np
 import pytest
 from pytest import param
 
-from pyvalfx.cfi.blackscholes import BlackScholes
+from pyvallib.cfi.blackscholes import BlackScholes
 
 err_msg_S_K = "Expected inputs S, K to be greater than or equal to 0"
 err_msg_T_sigma_r = "Expected inputs T, sigma, rfr to be greater than 0"

@@ -2,8 +2,8 @@ import numpy as np
 import pytest
 from pytest import param
 
-from pyvalfx.cfi.binomial import BinomialAmerican, BinomialCRR
-from pyvalfx.cfi.blackscholes import BlackScholes
+from pyvallib.cfi.binomial import BinomialAmerican, BinomialCRR
+from pyvallib.cfi.blackscholes import BlackScholes
 
 dt = 1 / 252
 

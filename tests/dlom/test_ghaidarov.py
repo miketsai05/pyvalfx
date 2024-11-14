@@ -1,7 +1,7 @@
 import pytest
 from pytest import param
 
-from pyvalfx.dlom.ghaidarov import Ghaidarov
+from pyvallib.dlom.ghaidarov import Ghaidarov
 
 
 @pytest.mark.parametrize(

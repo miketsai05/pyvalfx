@@ -4,8 +4,8 @@ import numpy as np
 import pytest
 from pytest import param
 
-from pyvalfx.cfi.blackscholes import BlackScholes
-from pyvalfx.cfi.montecarlo import MonteCarlo
+from pyvallib.cfi.blackscholes import BlackScholes
+from pyvallib.cfi.montecarlo import MonteCarlo
 
 err_msg_S = "Expected input S to be array or scalar"
 err_msg_T = "Expected input T to be array or scalar"
