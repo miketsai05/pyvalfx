@@ -30,12 +30,14 @@ def test_binomial(S, K, T, sigma, r, q, error_message):
         )
 
         binomial_american = BinomialAmerican(S, K, T, sigma, r, round(T / dt), q)
+
         if q == 0:
             assert binomial_american.call_price() == pytest.approx(
                 BlackScholes(S, K, T, sigma, r, q).call_price(), rel=0.001
             )
         else:
             assert binomial_american.call_price() >= BlackScholes(S, K, T, sigma, r, q).call_price()
+
         assert binomial_american.put_price() >= BlackScholes(S, K, T, sigma, r, q).put_price()
 
     # else:
