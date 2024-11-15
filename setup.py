@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="pyvallib",
-    version="0.0.0",
+    version="0.0.1",
     author="Mike",
     author_email="",
     description="A package for common valuation methodologies in Fair Value and Fair Market Value measurements.",
@@ -16,4 +16,5 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.10",
+    install_requires=["numpy>=1.24.2", "pandas>=2.1.3", "scipy>=1.9.3"],
 )
