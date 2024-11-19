@@ -18,3 +18,7 @@ requests==2.31.0
 # Excel
 xlsxwriter==3.0.8
 openpyxl==3.0.10
+
+# Distribution
+twine==5.1.1
+wheel==0.45.0
