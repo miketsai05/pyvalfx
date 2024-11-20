@@ -1,6 +1,6 @@
-# pyvalfx
+# pyvallib
 
-pyvalfx provides an implementation of commonly applied methodologies used in fair value measurements for financial reporting purposes.
+pyvallib provides an implementation of commonly applied methodologies used in fair value measurements for financial reporting purposes.
 
 ## Implemented Methodologies
 
