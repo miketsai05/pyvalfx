@@ -10,7 +10,7 @@ pythonpath = ["src"]
 
 [project]
 name="pyvallib"
-version="0.0.1"
+version="0.0.1.dev1"
 description="A package for common valuation methodologies in Fair Value and Fair Market Value measurements."
 readme = "README.md"
 requires-python = ">=3.10"
