@@ -4,6 +4,8 @@ if __name__ == "__main__":
     setup()
 
 
-# python3 -m build
+# python -m build
 # twine upload --repository testpypi dist/*
+# twine upload dist/*
+# twine upload --skip-existing dist/*
 # python setup.py clean --all
