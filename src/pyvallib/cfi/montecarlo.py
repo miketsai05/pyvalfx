@@ -32,8 +32,8 @@ class MonteCarlo:
         q: float = 0,
         seed: int = 6302024,
     ):
-        if any((np.asarray(x) <= 0).any() for x in [S, T, sigma, r]):
-            raise ValueError("Expected inputs S, T, sigma, rfr to be greater than 0")
+        if any((np.asarray(x) < 0).any() for x in [S, T, sigma, r]):
+            raise ValueError("Expected inputs S, T, sigma, rfr to be greater than or equal to 0")
 
         self.S = np.atleast_2d(S)
         self.T = np.atleast_2d(T)

@@ -1,7 +1,7 @@
 import pytest
 from pytest import param
 
-from pyvalfx.dlom.differential_put import DifferentialPut
+from pyvallib.dlom.differential_put import DifferentialPut
 
 
 @pytest.mark.parametrize(

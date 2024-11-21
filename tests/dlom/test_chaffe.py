@@ -1,7 +1,7 @@
 import pytest
 from pytest import param
 
-from pyvalfx.dlom.chaffe import Chaffe
+from pyvallib.dlom.chaffe import Chaffe
 
 
 @pytest.mark.parametrize(

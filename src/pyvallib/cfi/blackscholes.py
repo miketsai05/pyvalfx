@@ -15,7 +15,7 @@ class BlackScholes:
     q: The continuous dividend yield (default is 0)
     """
 
-    def __init__(self, S, K, T, sigma, r, q=0):
+    def __init__(self, S, K, T, sigma, r, q=0.0):
         if any((np.asarray(x) <= 0).any() for x in [T, sigma, r]):
             raise ValueError("Expected inputs T, sigma, rfr to be greater than 0")
         if any((np.asarray(x) < 0).any() for x in [S, K]):

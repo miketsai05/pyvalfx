@@ -1,7 +1,7 @@
 import pytest
 from pytest import param
 
-from pyvalfx.dlom.finnerty import Finnerty
+from pyvallib.dlom.finnerty import Finnerty
 
 
 @pytest.mark.parametrize(
